@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ConfigProvider from 'antd/es/config-provider';
-import { Locale as AntdLocaleData } from 'antd/es/locale-provider'
+import { Locale as AntdLocaleData } from 'antd/es/locale-provider';
 
 import { LocaleData } from '../types';
 
