@@ -34,9 +34,9 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
 
     return (TranslatableComponent: React.ComponentClass<WrappedProps>) => {
         class Translatable extends Component<WrappedProps, WrappedState> {
-            private cache: IntlCache = createIntlCache();
+            cache: IntlCache = createIntlCache();
 
-            public state: WrappedState = {
+            state: WrappedState = {
                 locale: this.props.locale,
                 intl: createIntl(prepareConfig(this.props), this.cache),
                 cache: this.cache,
