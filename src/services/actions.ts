@@ -14,13 +14,9 @@ export function getLocale(): Action {
     };
 }
 
-export const createIntlProvider = (payload = {}): Action => ({
+export const setIntl = (payload = {}): Action => ({
     payload,
-    type: actionTypes.CREATE_INTL_PROVIDER,
-});
-
-export const destroyIntlProvider = (): Action => ({
-    type: actionTypes.DESTROY_INTL_PROVIDER,
+    type: actionTypes.SET_INTL,
 });
 
 export { actionTypes };

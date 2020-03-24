@@ -7,7 +7,7 @@ import getDisplayName from 'react-display-name';
 import { LocaleData, LocaleState, State } from '../types';
 
 import { translateSelector } from '../services/selectors';
-import { createIntlProvider, destroyIntlProvider } from '../services/actions';
+import { setIntl } from '../services/actions';
 
 export interface WrappedProps extends LocaleState {
     [extraProps: string]: any;
@@ -46,8 +46,7 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
 
             static propTypes = {
                 locale: PropTypes.string.isRequired,
-                createIntlProvider: PropTypes.func.isRequired,
-                destroyIntlProvider: PropTypes.func.isRequired,
+                setIntl: PropTypes.func.isRequired,
             };
 
             static getDerivedStateFromProps(props: WrappedProps, prevState: WrappedState) {
@@ -61,22 +60,17 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
             }
 
             componentDidMount() {
-                this.props.createIntlProvider({
+                this.props.setIntl({
                     intl: this.state.intl,
                 });
             }
 
             componentDidUpdate(_: WrappedProps, prevState: WrappedState) {
-                if (this.state.locale !== prevState.locale) {
-                    this.props.destroyIntlProvider();
-                    this.props.createIntlProvider({
+                if (this.state.intl !== prevState.intl) {
+                    this.props.setIntl({
                         intl: this.state.intl,
                     });
                 }
-            }
-
-            componentWillUnmount() {
-                this.props.destroyIntlProvider();
             }
 
             render() {
@@ -90,8 +84,7 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
 
         const mapStateToProps = (state: State) => translateSelector(state);
         const mapDispatchToProps = {
-            createIntlProvider,
-            destroyIntlProvider,
+            setIntl,
         };
 
         return connect(mapStateToProps, mapDispatchToProps)(Translatable);
