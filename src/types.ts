@@ -16,7 +16,7 @@ export interface Action {
 }
 
 export interface LocaleData<T = {}> {
-    [locale: string]: object & T;
+    [locale: string]: T;
 }
 
 export interface Console {
