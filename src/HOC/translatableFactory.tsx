@@ -34,19 +34,19 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
 
     return (TranslatableComponent: React.ComponentClass<WrappedProps>) => {
         class Translatable extends Component<WrappedProps, WrappedState> {
-            private cache: IntlCache = createIntlCache();
-
-            public state: WrappedState = {
-                locale: this.props.locale,
-                intl: createIntl(prepareConfig(this.props), this.cache),
-                cache: this.cache,
-            };
-
             static displayName = `Translatable(${getDisplayName(TranslatableComponent)})`;
 
             static propTypes = {
                 locale: PropTypes.string.isRequired,
                 setIntl: PropTypes.func.isRequired,
+            };
+
+            cache: IntlCache = createIntlCache();
+
+            state: WrappedState = {
+                locale: this.props.locale,
+                intl: createIntl(prepareConfig(this.props), this.cache),
+                cache: this.cache,
             };
 
             static getDerivedStateFromProps(props: WrappedProps, prevState: WrappedState) {
@@ -66,6 +66,7 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
             }
 
             componentDidUpdate(_: WrappedProps, prevState: WrappedState) {
+                // tslint:disable-next-line early-exit
                 if (this.state.intl !== prevState.intl) {
                     this.props.setIntl({
                         intl: this.state.intl,
