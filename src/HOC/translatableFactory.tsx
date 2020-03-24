@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { IntlProvider } from 'react-intl';
+import { RawIntlProvider, createIntl, createIntlCache, IntlShape } from 'react-intl';
 import getDisplayName from 'react-display-name';
 
 import { LocaleData, LocaleState, State } from '../types';
@@ -14,9 +14,14 @@ export interface WrappedProps extends LocaleState {
     locale: string;
 }
 
+interface WrappedState {
+    locale: string;
+    intl: IntlShape;
+}
+
 const translatableFactory = (intlLocaleData: LocaleData): any => {
-    return (TranslatableComponent: React.ComponentType<WrappedProps>) => {
-        class Translatable extends Component<WrappedProps> {
+    return (TranslatableComponent: React.ComponentClass<WrappedProps>) => {
+        class Translatable extends Component<WrappedProps, WrappedState> {
             static displayName = `Translatable(${getDisplayName(TranslatableComponent)})`;
 
             static propTypes = {
@@ -44,8 +49,17 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
 
             componentDidMount() {
                 this.props.createIntlProvider({
-                    intlData: intlLocaleData,
+                    intl: this.state.intl,
                 });
+            }
+
+            componentDidUpdate(_: WrappedProps, prevState: WrappedState) {
+                if (this.state.intl !== prevState.intl) {
+                    this.props.destroyIntlProvider();
+                    this.props.createIntlProvider({
+                        intl: this.state.intl,
+                    });
+                }
             }
 
             componentWillUnmount() {
@@ -53,12 +67,6 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
             }
 
             render() {
-                const { locale } = this.props;
-                const intlProviderProps = {
-                    locale,
-                    messages: intlLocaleData[locale],
-                };
-
                 return (
                     <RawIntlProvider value={this.state.intl}>
                         <TranslatableComponent {...this.props} />

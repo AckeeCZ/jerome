@@ -1,61 +1,25 @@
-import { Action, Store } from '../../types';
-import { select, takeEvery, call, take, race } from 'redux-saga/effects';
-import { createIntl, createIntlCache } from 'react-intl';
+import { Action } from '../../types';
+import { call, take, race } from 'redux-saga/effects';
+import { IntlShape } from 'react-intl';
 
 import types from '../actionTypes';
-import { translateSelector } from '../selectors';
 
-const store: Store = {
-    locale: null,
-    intl: null,
-    intlData: {},
-};
+let intl: IntlShape | null = null;
 
-function* createIntlProvider() {
-    if (!store.intlData) {
-        yield take(types.CREATE_INTL_PROVIDER);
-    }
-
-    const { locale } = yield select(translateSelector);
-
-    if (store.locale === locale && store.intl) {
-        return;
-    }
-
-    store.locale = locale;
-
-    const intlConfig = {
-        locale,
-        key: locale,
-        messages: store.intlData[locale],
-    };
-
-    const cache = createIntlCache();
-    const intl = createIntl(intlConfig, cache);
-
-    store.intl = intl;
+function* initializedIntlProvider(action: Action) {
+    intl = action.payload.intl;
 }
 
 export function* getIntl() {
-    if (!store.intl) {
-        yield createIntlProvider();
+    if (!intl) {
+        const { payload } = yield take(types.CREATE_INTL_PROVIDER);
+        return payload.intl;
     }
-
-    return store.intl;
-}
-
-function* initializedIntlProvider(action: Action) {
-    store.intlData = action.payload.intlData;
-
-    yield call(createIntlProvider);
-
-    yield takeEvery(types.SET_LOCALE, createIntlProvider);
+    return intl;
 }
 
 function cleanUp() {
-    store.intl = null;
-    store.intlData = {};
-    store.locale = null;
+    intl = null;
 }
 
 export default function* intlProviderFlow() {

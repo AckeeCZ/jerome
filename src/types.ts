@@ -16,21 +16,11 @@ export interface Action {
 }
 
 export interface LocaleData<T = {}> {
-    [locale: string]: object & T;
+    [locale: string]: T;
 }
 
 export interface Console {
     error(...args: any[]): any;
     warn(...args: any[]): any;
     log(...args: any[]): any;
-}
-
-export interface IntlLocaleData {
-    readonly [key: string]: any;
-}
-
-export interface Store {
-    locale: string | null;
-    intl: object | null;
-    intlData: IntlLocaleData;
 }
