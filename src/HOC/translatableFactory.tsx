@@ -25,6 +25,23 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
                 destroyIntlProvider: PropTypes.func.isRequired,
             };
 
+            static getDerivedStateFromProps(props: WrappedProps, prevState: WrappedState) {
+                if (!prevState || props.locale !== prevState.locale) {
+                    const intlConfig = {
+                        locale: props.locale,
+                        messages: intlLocaleData[props.locale],
+                    };
+
+                    const cache = createIntlCache();
+                    const intl = createIntl(intlConfig, cache);
+                    return {
+                        intl,
+                        locale: props.locale,
+                    };
+                }
+                return null;
+            }
+
             componentDidMount() {
                 this.props.createIntlProvider({
                     intlData: intlLocaleData,
@@ -43,9 +60,9 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
                 };
 
                 return (
-                    <IntlProvider {...intlProviderProps}>
+                    <RawIntlProvider value={this.state.intl}>
                         <TranslatableComponent {...this.props} />
-                    </IntlProvider>
+                    </RawIntlProvider>
                 );
             }
         }
@@ -56,10 +73,7 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
             destroyIntlProvider,
         };
 
-        return connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(Translatable);
+        return connect(mapStateToProps, mapDispatchToProps)(Translatable);
     };
 };
 
