@@ -1,6 +1,6 @@
 {
     "name": "@ackee/jerome",
-    "version": "3.0.0",
+    "version": "3.1.0",
     "description": "Equipment for localizations at React-Redux-ReduxSaga stack",
     "main": "lib/index.js",
     "module": "es/index.js",
@@ -37,7 +37,7 @@
         "react-display-name": "^0.2.4"
     },
     "peerDependencies": {
-        "antd": "3.19.x",
+        "antd": "3.26.x",
         "prop-types": "15.7.x",
         "react": "16.8.x",
         "react-intl": "^3.1.11",
@@ -64,7 +64,7 @@
         "@types/react-redux": "^7.1.0",
         "@types/redux": "^3.6.0",
         "@types/storybook__react": "^3.0.9",
-        "antd": "^3.19.x",
+        "antd": "^3.26.13",
         "babel-jest": "23.6.x",
         "babel-loader": "8.0.x",
         "babel-plugin-custom-import-path-transform": "1.0.x",
