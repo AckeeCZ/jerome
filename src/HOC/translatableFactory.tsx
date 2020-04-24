@@ -14,7 +14,7 @@ export interface WrappedProps extends LocaleState {
     locale: string;
 }
 
-interface WrappedState {
+interface IntlState {
     locale: string;
     intl: IntlShape;
     cache: IntlCache;
@@ -33,7 +33,7 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
     }
 
     return (TranslatableComponent: React.ComponentClass<WrappedProps>) => {
-        class Translatable extends Component<WrappedProps, WrappedState> {
+        class Translatable extends Component<WrappedProps, IntlState> {
             static displayName = `Translatable(${getDisplayName(TranslatableComponent)})`;
 
             static propTypes = {
@@ -43,13 +43,13 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
 
             cache: IntlCache = createIntlCache();
 
-            state: WrappedState = {
+            state: IntlState = {
                 locale: this.props.locale,
                 intl: createIntl(prepareConfig(this.props), this.cache),
                 cache: this.cache,
             };
 
-            static getDerivedStateFromProps(props: WrappedProps, prevState: WrappedState) {
+            static getDerivedStateFromProps(props: WrappedProps, prevState: IntlState) {
                 if (shouldRecreateIntl(props, prevState)) {
                     return {
                         intl: createIntl(prepareConfig(props), prevState.cache),
@@ -65,7 +65,7 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
                 });
             }
 
-            componentDidUpdate(_: WrappedProps, prevState: WrappedState) {
+            componentDidUpdate(_: WrappedProps, prevState: IntlState) {
                 // tslint:disable-next-line early-exit
                 if (this.state.intl !== prevState.intl) {
                     this.props.setIntl({
