@@ -20,8 +20,8 @@ interface IntlState {
     cache: IntlCache;
 }
 
-function shouldRecreateIntl(props: WrappedProps, state: WrappedState): boolean {
-    return !state || props.locale !== state.locale;
+function shouldRecreateIntl(props: WrappedProps, state: IntlState): boolean {
+    return props.locale !== state.locale;
 }
 
 const translatableFactory = (intlLocaleData: LocaleData): any => {
