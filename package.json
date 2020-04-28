@@ -4,6 +4,7 @@
     "description": "Equipment for localizations at React-Redux-ReduxSaga stack",
     "main": "lib/index.js",
     "module": "es/index.js",
+    "sideEffects": false,
     "scripts": {
         "build:lib": "BABEL_ENV=lib babel src --out-dir lib --extensions \".ts,.tsx\" --ignore \"**/*.story.tsx,**/*.d.ts\" --source-maps inline",
         "build:es": "BABEL_ENV=es babel src --out-dir es --extensions \".ts,.tsx\" --ignore \"**/*.story.tsx,**/*.d.ts\" --source-maps inline",
