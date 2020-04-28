@@ -1,65 +1,94 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { IntlProvider } from 'react-intl';
+import { RawIntlProvider, createIntl, createIntlCache, IntlShape, IntlCache } from 'react-intl';
 import getDisplayName from 'react-display-name';
 
 import { LocaleData, LocaleState, State } from '../types';
 
 import { translateSelector } from '../services/selectors';
-import { createIntlProvider, destroyIntlProvider } from '../services/actions';
+import { setIntl } from '../services/actions';
 
 export interface WrappedProps extends LocaleState {
     [extraProps: string]: any;
     locale: string;
 }
 
+interface IntlState {
+    locale: string;
+    intl: IntlShape;
+    cache: IntlCache;
+}
+
+function shouldRecreateIntl(props: WrappedProps, state: IntlState): boolean {
+    return props.locale !== state.locale;
+}
+
 const translatableFactory = (intlLocaleData: LocaleData): any => {
-    return (TranslatableComponent: React.ComponentType<WrappedProps>) => {
-        class Translatable extends Component<WrappedProps> {
+    function prepareConfig(props: WrappedProps) {
+        return {
+            locale: props.locale,
+            messages: intlLocaleData[props.locale],
+        };
+    }
+
+    return (TranslatableComponent: React.ComponentClass<WrappedProps>) => {
+        class Translatable extends Component<WrappedProps, IntlState> {
             static displayName = `Translatable(${getDisplayName(TranslatableComponent)})`;
 
             static propTypes = {
                 locale: PropTypes.string.isRequired,
-                createIntlProvider: PropTypes.func.isRequired,
-                destroyIntlProvider: PropTypes.func.isRequired,
+                setIntl: PropTypes.func.isRequired,
             };
 
+            cache: IntlCache = createIntlCache();
+
+            state: IntlState = {
+                locale: this.props.locale,
+                intl: createIntl(prepareConfig(this.props), this.cache),
+                cache: this.cache,
+            };
+
+            static getDerivedStateFromProps(props: WrappedProps, prevState: IntlState) {
+                if (shouldRecreateIntl(props, prevState)) {
+                    return {
+                        intl: createIntl(prepareConfig(props), prevState.cache),
+                        locale: props.locale,
+                    };
+                }
+                return null;
+            }
+
             componentDidMount() {
-                this.props.createIntlProvider({
-                    intlData: intlLocaleData,
+                this.props.setIntl({
+                    intl: this.state.intl,
                 });
             }
 
-            componentWillUnmount() {
-                this.props.destroyIntlProvider();
+            componentDidUpdate(_: WrappedProps, prevState: IntlState) {
+                // tslint:disable-next-line early-exit
+                if (this.state.intl !== prevState.intl) {
+                    this.props.setIntl({
+                        intl: this.state.intl,
+                    });
+                }
             }
 
             render() {
-                const { locale } = this.props;
-                const intlProviderProps = {
-                    locale,
-                    messages: intlLocaleData[locale],
-                };
-
                 return (
-                    <IntlProvider {...intlProviderProps}>
+                    <RawIntlProvider value={this.state.intl}>
                         <TranslatableComponent {...this.props} />
-                    </IntlProvider>
+                    </RawIntlProvider>
                 );
             }
         }
 
         const mapStateToProps = (state: State) => translateSelector(state);
         const mapDispatchToProps = {
-            createIntlProvider,
-            destroyIntlProvider,
+            setIntl,
         };
 
-        return connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(Translatable);
+        return connect(mapStateToProps, mapDispatchToProps)(Translatable);
     };
 };
 

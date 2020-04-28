@@ -24,13 +24,3 @@ export interface Console {
     warn(...args: any[]): any;
     log(...args: any[]): any;
 }
-
-export interface IntlLocaleData {
-    readonly [key: string]: any;
-}
-
-export interface Store {
-    locale: string | null;
-    intl: object | null;
-    intlData: IntlLocaleData;
-}
