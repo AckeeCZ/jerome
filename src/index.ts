@@ -1,4 +1,4 @@
-export * from './HOC';
+export { default as translatableFactory } from './HOC/translatableFactory';
 
 export { default as saga, getIntl } from './services/sagas';
 
