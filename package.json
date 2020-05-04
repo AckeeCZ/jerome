@@ -37,6 +37,7 @@
     "dependencies": {
         "@formatjs/intl-relativetimeformat": "^2.8.1",
         "idb": "4.0.x",
+        "marked": "0.6",
         "react-display-name": "^0.2.4"
     },
     "peerDependencies": {
@@ -101,6 +102,9 @@
         "tslint-config-prettier": "^1.18.0",
         "tslint-react": "^4.0.0",
         "typescript": "^3.5.2"
+    },
+    "resolutions": {
+        "marked": "^0.6.2"
     },
     "publishConfig": {
         "access": "public"
