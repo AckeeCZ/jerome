@@ -1,5 +1,36 @@
 # Changelog
 
+<a name="4.0.0"></a>
+## 4.0.0 (2020-05-04)
+
+### Added
+
+- ✨ Add second entry point for antd compliant imports [[24efcf7](https://github.com/AckeeCZ/jerome/commit/24efcf752399276124f17a9c929829a5275d5291)]
+- ✨ Uses create intl and RawIntlProvider It is usefull to create intl in the component instead of delegating it to the IntlProvider since it can be sent to the saga to be stored for an external usage. [[14b473a](https://github.com/AckeeCZ/jerome/commit/14b473ad495b1021e6e886abe37a3925e9bd6165)]
+- 📝 Add vulnerabilities badge into the readme [[5662a0c](https://github.com/AckeeCZ/jerome/commit/5662a0c3a3c2343d299db24992f7a36523c116c2)]
+
+### Changed
+
+- ⬆️ Upgrade version of nodejs image used at ci server [[2b63152](https://github.com/AckeeCZ/jerome/commit/2b63152e7a998a091e9a8280d13adcbdd0c84fd1)]
+- ♻️ Separate antd related code into standalone &quot;index&quot; file [[9ff4870](https://github.com/AckeeCZ/jerome/commit/9ff4870f1e4e805ba6b37f3c37e945bd6c71dc32)]
+- 🔧 Mark package as sideEffects free [[bdb6d81](https://github.com/AckeeCZ/jerome/commit/bdb6d819cf9c25fecb40592e90d21c08c42135aa)]
+- ⚡ Add yarnrc to have better release commits [[a2c32ef](https://github.com/AckeeCZ/jerome/commit/a2c32ef87d18352036c9a303e786baf0d49e2ed5)]
+- ♻️ Replace changelog-it with gitmoji-changelog [[dbbd642](https://github.com/AckeeCZ/jerome/commit/dbbd642c6ffe128d770d2c0195b0baf56ad2221f)]
+- ♻️ Refactors the intlProvider saga The saga now doesn&#x27;t create the duplication of the intl from the react intl provider but uses the intl instance from the intl provider [[e74cc0b](https://github.com/AckeeCZ/jerome/commit/e74cc0b25fbd9fb93a87fb903bea355a8de06c73)]
+
+### Removed
+
+- 🔥 Remove package-lock [[702fbc0](https://github.com/AckeeCZ/jerome/commit/702fbc029b4e513f0caa8f07ce6609dd4f6aa403)]
+
+### Fixed
+
+- 💚 Split build into phases [[2ac4e87](https://github.com/AckeeCZ/jerome/commit/2ac4e876724162d6faab7fe5f5120b9f23f342ee)]
+- ✏️ Add types for jest [[6734e82](https://github.com/AckeeCZ/jerome/commit/6734e82e59816f5659fc7a61bff675644b5fcaa7)]
+
+### Security
+
+- 🔒 Add resolutions for marked pkg to fix moderate vulnerabilities [[a22dd9c](https://github.com/AckeeCZ/jerome/commit/a22dd9cf849feb214166e48de5016ec8a4028b28)]
+
 <a name="3.1.0"></a>
 
 ## 3.1.0 (2020-03-24)
