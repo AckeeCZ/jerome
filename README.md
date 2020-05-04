@@ -1,6 +1,8 @@
 ![ackee|Jerome](./assets/ackee_git_frontend_jerome.png)
 
-# [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AckeeCZ/jerome/blob/master/LICENSE) [![CI Status](https://img.shields.io/travis/com/AckeeCZ/jerome.svg?style=flat)](https://travis-ci.com/AckeeCZ/jerome) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request) [![Dependency Status](https://img.shields.io/david/AckeeCZ/jerome.svg?style=flat-square)](https://david-dm.org/AckeeCZ/jerome)
+# [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AckeeCZ/jerome/blob/master/LICENSE) [![CI Status](https://img.shields.io/travis/com/AckeeCZ/jerome.svg?style=flat)](https://travis-ci.com/AckeeCZ/jerome) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request) [![Dependency Status](https://img.shields.io/david/AckeeCZ/jerome.svg?style=flat-square)](https://david-dm.org/AckeeCZ/jerome)[![Known Vulnerabilities](https://snyk.io/test/github/AckeeCZ/jerome/badge.svg)](https://snyk.io/test/github/AckeeCZ/jerome)
+
+
 
 
 # Jerome
