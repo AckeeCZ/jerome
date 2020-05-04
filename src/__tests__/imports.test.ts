@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 
-import translatableFactory from '../../lib/HOC/translatableFactory'
-import translatableWithAntdFactory from '../../lib/HOC/translatableWithAntdFactory'
+import translatableFactory from '../../lib/HOC/translatableFactory';
+import translatableWithAntdFactory from '../../lib/HOC/translatableWithAntdFactory';
 
 import * as standardJeromeImport from '../../../ackee-jerome';
 import * as antdJeromeImport from '../../../ackee-jerome/antd';
