@@ -11,7 +11,7 @@ describe('Imports', () => {
         expect(standardJeromeImport.translatableFactory).toBe(translatableFactory);
     });
 
-    it('HOC factory is not available from antd specific import is the one with antd', () => {
+    it('HOC factory available from antd specific import is the one with antd', () => {
         expect(antdJeromeImport.translatableFactory).toBe(translatableWithAntdFactory);
     });
 });
