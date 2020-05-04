@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- 8
+- 10
 script: npm run clean & npm run lint && npm run test && npm i && npm run build
 deploy:
   provider: npm
