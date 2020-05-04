@@ -1,7 +1,14 @@
 language: node_js
 node_js:
-- 8
-script: npm run clean & npm run lint && npm run test && npm i && npm run build
+    - 10
+install:
+    - yarn install --frozen-lockfile
+before_script:
+    - yarn clean
+script:
+    - yarn build
+    - yarn lint
+    - yarn test
 deploy:
   provider: npm
   email: ackeedevelopment@gmail.com
