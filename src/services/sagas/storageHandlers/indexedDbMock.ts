@@ -7,11 +7,11 @@ export class IndexedDbMock {
         this.db = {};
     }
 
-    get(storeName: string, key: string): any {
+    get(_: string, key: string): any {
         return this.db[key];
     }
 
-    put(storeName: string, val: any, key: string) {
+    put(_: string, val: any, key: string) {
         this.db[key] = val;
         return Promise.resolve(key);
     }
