@@ -1,5 +1,16 @@
 # Changelog
 
+<a name="4.0.1"></a>
+## 4.0.1 (2020-05-20)
+
+### Changed
+
+- 🔧 Setup husky to run lint before push [[2daf101](https://github.com/AckeeCZ/jerome/commit/2daf101787c23ee159875dc1c554399068bdf817)]
+
+### Fixed
+
+- 🐛 Catch errors when opening DB and fallback to mock DB in that case [[580a243](https://github.com/AckeeCZ/jerome/commit/580a2430f85b4f99727dafd5b68d64d510cd7550)]
+
 <a name="4.0.0"></a>
 ## 4.0.0 (2020-05-04)
 
