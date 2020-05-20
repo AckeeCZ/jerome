@@ -8,19 +8,22 @@ const DATABASE_NAME = '@ackee/jerome';
 const DATABASE_VERSION = 1;
 const DATABASE_STORE_NAME = 'keyvaluepairs';
 
-const openDB = isBrowserEnv && window.indexedDB ? openDBReal : openDBMock;
+async function openDB(): Promise<IDBLikeDatabase> {
+    const open = isBrowserEnv && window.indexedDB ? openDBReal : openDBMock;
 
-let db: Promise<IDBLikeDatabase>;
+    try {
+        const db = await open(DATABASE_NAME, DATABASE_VERSION, {
+            upgrade(nextDb: any) {
+                nextDb.createObjectStore(DATABASE_STORE_NAME);
+            },
+        });
+        return db;
+    } catch (e) {
+        return openDBMock();
+    }
+}
 
-db = Promise.resolve(
-    openDB(DATABASE_NAME, DATABASE_VERSION, {
-        upgrade(nextDb: any) {
-            nextDb.createObjectStore(DATABASE_STORE_NAME);
-        },
-    }),
-).catch(err => {
-    return openDBMock();
-});
+const db: Promise<IDBLikeDatabase> = openDB();
 
 export async function get(key: string) {
     return (await db).get(DATABASE_STORE_NAME, key);
