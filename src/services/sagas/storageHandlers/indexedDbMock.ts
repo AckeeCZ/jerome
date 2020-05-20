@@ -1,19 +1,22 @@
+import { IDBLikeDatabase } from '../../../types';
+
 export class IndexedDbMock {
-    private db: {[key: string]: any};
+    private db: { [key: string]: any };
 
     constructor() {
         this.db = {};
     }
 
-    get(key: string): any {
+    get(_: string, key: string): any {
         return this.db[key];
     }
 
-    put(val: any, key: string) {
+    put(_: string, val: any, key: string) {
         this.db[key] = val;
+        return Promise.resolve(key);
     }
 }
 
-export default (): IndexedDbMock => {
-    return new IndexedDbMock();
+export default (): Promise<IDBLikeDatabase> => {
+    return Promise.resolve(new IndexedDbMock());
 };

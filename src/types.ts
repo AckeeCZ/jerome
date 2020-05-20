@@ -24,3 +24,8 @@ export interface Console {
     warn(...args: any[]): any;
     log(...args: any[]): any;
 }
+
+export interface IDBLikeDatabase {
+    get(storeName: string, key: string): any;
+    put(storeName: string, value: any, key: string): any;
+}
