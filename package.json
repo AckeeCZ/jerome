@@ -49,6 +49,7 @@
         "redux-saga": "1.0.x"
     },
     "devDependencies": {
+        "@ackee/browserslist-config": "^1.0.1",
         "@babel/cli": "^7.4.4",
         "@babel/core": "^7.4.5",
         "@babel/plugin-proposal-class-properties": "^7.4.4",
@@ -113,5 +114,8 @@
         "hooks": {
             "pre-push": "npm run lint && npm run test"
         }
-    }
+    },
+    "browserslist": [
+        "extends @ackee/browserslist-config"
+    ]
 }
