@@ -8,19 +8,18 @@
     "scripts": {
         "build:lib": "BABEL_ENV=lib babel src --out-dir lib --extensions \".ts,.tsx\" --ignore \"**/*.story.tsx,**/*.d.ts\" --source-maps inline",
         "build:es": "BABEL_ENV=es babel src --out-dir es --extensions \".ts,.tsx\" --ignore \"**/*.story.tsx,**/*.d.ts\" --source-maps inline",
-        "build:js": "npm run build:lib && npm run build:es",
+        "build:js": "yarn build:lib && yarn build:es",
         "build:types": "tsc --project tsconfig.types.json --emitDeclarationOnly",
-        "build": "npm run clean && npm run type-check && npm run build:js && npm run build:types",
-        "build:quick": "yarn clean && yarn build:es && yarn build:types",
+        "build": "yarn clean && yarn type-check && yarn build:js && yarn build:types",
         "storybook": "rm -rf build && start-storybook -p 6007",
         "build-storybook": "cross-env BABEL_ENV=development build-storybook -o build",
         "lint": "tslint \"src/**/*.{ts,tsx}\"",
-        "prepare": "npm run build",
+        "prepare": "yarn build",
         "test": "BABEL_ENV=test jest",
         "clean": "rm -rf lib es",
         "type-check": "tsc --noEmit",
-        "type-check:watch": "npm run type-check -- --watch",
-        "start": "npm run build && onchange 'src/**/*.{ts,tsx}' -- npm run build",
+        "type-check:watch": "yarn type-check -- --watch",
+        "start": "yarn build && onchange 'src/**/*.{ts,tsx}' -- yarn build",
         "changelog": "gitmoji-changelog",
         "version": "yarn changelog && code --wait CHANGELOG.md && git add CHANGELOG.md",
         "release": "yarn version",
@@ -113,7 +112,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-push": "npm run lint && npm run test"
+            "pre-push": "yarn lint && yarn test"
         }
     },
     "browserslist": [
