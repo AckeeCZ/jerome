@@ -1,5 +1,33 @@
 # Changelog
 
+<a name="4.1.0"></a>
+## 4.1.0 (2020-07-14)
+
+### Added
+
+- ✨ translatableFactory: add optional onError prop [[a47c475](https://github.com/AckeeCZ/jerome/commit/a47c47553684a9562af0dfbfa327958ee65e131b)]
+- ➕ Add @ackee/browserslist-config package [[2996dad](https://github.com/AckeeCZ/jerome/commit/2996dadc2be69131b9004f74efaa196d77151161)]
+
+### Changed
+
+- 🔧 Update changelog script [[5e44ecf](https://github.com/AckeeCZ/jerome/commit/5e44ecf77cc6ca922ee83f5aac9e369b26a6061f)]
+- ⬆️ Loosen up peer dependencies (from patch to minor version) [[9cfa24b](https://github.com/AckeeCZ/jerome/commit/9cfa24b0c5b23c8649fceb5275bcdaa51d5867c8)]
+- 🔧 Replace npm command with yarn [[91ebdc4](https://github.com/AckeeCZ/jerome/commit/91ebdc4c5bc302d62e24ce2d6c2ab54a68fa9920)]
+- ⬆️ Upgrade @babel/* packages [[9f614a4](https://github.com/AckeeCZ/jerome/commit/9f614a48a56d6e72549d9759d36c6c65a2d1edb2)]
+
+<a name="4.0.1"></a>
+## 4.0.1 (2020-05-20)
+
+### Changed
+
+- 🚨 Fix lint errors [[63ec326](https://github.com/AckeeCZ/jerome/commit/63ec3266ea9b7cf2d56afb5ec2a21d06066f5548)]
+- 🔧 Setup husky to run lint before push [[2daf101](https://github.com/AckeeCZ/jerome/commit/2daf101787c23ee159875dc1c554399068bdf817)]
+- ♻️ Use async/await instead of promise based try catch [[bcef378](https://github.com/AckeeCZ/jerome/commit/bcef37806e77eef7305b75868d0f750cd98ebfde)]
+
+### Fixed
+
+- 🐛 Catch errors when opening DB and fallback to mock DB in that case [[580a243](https://github.com/AckeeCZ/jerome/commit/580a2430f85b4f99727dafd5b68d64d510cd7550)]
+
 <a name="4.0.0"></a>
 ## 4.0.0 (2020-05-04)
 
