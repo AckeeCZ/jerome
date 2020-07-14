@@ -5,6 +5,7 @@ import { RawIntlProvider, createIntl, createIntlCache, IntlShape, IntlCache } fr
 import getDisplayName from 'react-display-name';
 
 import { LocaleData, LocaleState, State } from '../types';
+import { logger } from '../config';
 
 import { translateSelector } from '../services/selectors';
 import { setIntl } from '../services/actions';
@@ -12,6 +13,7 @@ import { setIntl } from '../services/actions';
 export interface WrappedProps extends LocaleState {
     [extraProps: string]: any;
     locale: string;
+    onError?: (err: string) => void;
 }
 
 interface IntlState {
@@ -25,10 +27,11 @@ function shouldRecreateIntl(props: WrappedProps, state: IntlState): boolean {
 }
 
 const translatableFactory = (intlLocaleData: LocaleData): any => {
-    function prepareConfig(props: WrappedProps) {
+    function prepareConfig({ locale, onError }: WrappedProps) {
         return {
-            locale: props.locale,
-            messages: intlLocaleData[props.locale],
+            onError,
+            locale: locale,
+            messages: intlLocaleData[locale],
         };
     }
 
@@ -39,6 +42,11 @@ const translatableFactory = (intlLocaleData: LocaleData): any => {
             static propTypes = {
                 locale: PropTypes.string.isRequired,
                 setIntl: PropTypes.func.isRequired,
+                onError: PropTypes.func,
+            };
+
+            static defaultProps = {
+                onError: logger.error,
             };
 
             cache: IntlCache = createIntlCache();

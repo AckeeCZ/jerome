@@ -8,18 +8,18 @@
     "scripts": {
         "build:lib": "BABEL_ENV=lib babel src --out-dir lib --extensions \".ts,.tsx\" --ignore \"**/*.story.tsx,**/*.d.ts\" --source-maps inline",
         "build:es": "BABEL_ENV=es babel src --out-dir es --extensions \".ts,.tsx\" --ignore \"**/*.story.tsx,**/*.d.ts\" --source-maps inline",
-        "build:js": "npm run build:lib && npm run build:es",
+        "build:js": "yarn build:lib && yarn build:es",
         "build:types": "tsc --project tsconfig.types.json --emitDeclarationOnly",
-        "build": "npm run clean && npm run type-check && npm run build:js && npm run build:types",
+        "build": "yarn clean && yarn type-check && yarn build:js && yarn build:types",
         "storybook": "rm -rf build && start-storybook -p 6007",
         "build-storybook": "cross-env BABEL_ENV=development build-storybook -o build",
         "lint": "tslint \"src/**/*.{ts,tsx}\"",
-        "prepare": "npm run build",
+        "prepare": "yarn build",
         "test": "BABEL_ENV=test jest",
         "clean": "rm -rf lib es",
         "type-check": "tsc --noEmit",
-        "type-check:watch": "npm run type-check -- --watch",
-        "start": "npm run build && onchange 'src/**/*.{ts,tsx}' -- npm run build",
+        "type-check:watch": "yarn type-check -- --watch",
+        "start": "yarn build && onchange 'src/**/*.{ts,tsx}' -- yarn build",
         "changelog": "gitmoji-changelog",
         "version": "yarn changelog && code --wait CHANGELOG.md && git add CHANGELOG.md",
         "release": "yarn version",
@@ -41,21 +41,22 @@
         "react-display-name": "^0.2.4"
     },
     "peerDependencies": {
-        "antd": "3.26.x",
-        "prop-types": "15.7.x",
-        "react": "16.8.x",
+        "antd": "3.x",
+        "prop-types": "17.x",
+        "react": "16.x",
         "react-intl": "^3.1.11",
-        "react-redux": "7.0.x",
-        "redux-saga": "1.0.x"
+        "react-redux": "7.x",
+        "redux-saga": "1.x"
     },
     "devDependencies": {
-        "@babel/cli": "^7.4.4",
-        "@babel/core": "^7.4.5",
-        "@babel/plugin-proposal-class-properties": "^7.4.4",
-        "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
-        "@babel/preset-env": "^7.4.5",
-        "@babel/preset-react": "^7.0.0",
-        "@babel/preset-typescript": "^7.3.3",
+        "@ackee/browserslist-config": "^1.0.1",
+        "@babel/cli": "^7.10.4",
+        "@babel/core": "^7.10.4",
+        "@babel/plugin-proposal-class-properties": "^7.10.4",
+        "@babel/plugin-proposal-object-rest-spread": "^7.10.4",
+        "@babel/preset-env": "^7.10.4",
+        "@babel/preset-react": "^7.10.4",
+        "@babel/preset-typescript": "^7.10.4",
         "@storybook/addon-actions": "^4.1.1",
         "@storybook/addon-info": "^4.1.1",
         "@storybook/addon-links": "^4.1.1",
@@ -69,7 +70,7 @@
         "@types/react-redux": "^7.1.0",
         "@types/redux": "^3.6.0",
         "@types/storybook__react": "^3.0.9",
-        "antd": "^3.26.13",
+        "antd": "3.x",
         "babel-jest": "23.6.x",
         "babel-loader": "8.0.x",
         "babel-plugin-custom-import-path-transform": "1.0.x",
@@ -88,14 +89,14 @@
         "onchange": "5.2.x",
         "package-size": "2.3.x",
         "prettier-config-ackee": "0.x",
-        "prop-types": "15.7.x",
-        "react": "16.8.x",
-        "react-dom": "16.8.x",
+        "prop-types": "15.x",
+        "react": "16.x",
+        "react-dom": "16.x",
         "react-intl": "^3.1.11",
         "react-redux": "7.x",
         "redux": "4.x",
         "redux-mock-store": "1.5.x",
-        "redux-saga": "1.0.x",
+        "redux-saga": "1.x",
         "ts-jest": "^24.0.2",
         "tslint-config-ackee": "^0.3.0",
         "tslint-config-airbnb": "^5.11.1",
@@ -111,7 +112,10 @@
     },
     "husky": {
         "hooks": {
-            "pre-push": "npm run lint && npm run test"
+            "pre-push": "yarn lint && yarn test"
         }
-    }
+    },
+    "browserslist": [
+        "extends @ackee/browserslist-config"
+    ]
 }
