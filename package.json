@@ -20,7 +20,7 @@
         "type-check": "tsc --noEmit",
         "type-check:watch": "yarn type-check -- --watch",
         "start": "yarn build && onchange 'src/**/*.{ts,tsx}' -- yarn build",
-        "changelog": "gitmoji-changelog",
+        "changelog": "git fetch origin && gitmoji-changelog",
         "version": "yarn changelog && code --wait CHANGELOG.md && git add CHANGELOG.md",
         "release": "yarn version",
         "size": "package-size ./es --no-cache"
