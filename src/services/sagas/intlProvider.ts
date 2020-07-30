@@ -1,20 +1,20 @@
 import { Action } from '../../types';
-import { take, takeEvery } from 'redux-saga/effects';
+import { takeEvery, setContext, getContext } from 'redux-saga/effects';
 import { IntlShape } from 'react-intl';
+
+import { SAGA_CONTEXT_KEY } from '../../constants';
 
 import types from '../actionTypes';
 
-let intl: IntlShape | null = null;
-
-function setIntl(action: Action) {
-    intl = action.payload.intl;
+function* setIntl(action: Action) {
+    const intl: IntlShape = action.payload.intl;
+    yield setContext({
+        [SAGA_CONTEXT_KEY]: intl,
+    });
 }
 
 export function* getIntl() {
-    if (!intl) {
-        const { payload } = yield take(types.SET_INTL);
-        return payload.intl;
-    }
+    const intl: IntlShape | null = yield getContext(SAGA_CONTEXT_KEY) || null;
     return intl;
 }
 
