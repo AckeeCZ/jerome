@@ -1,16 +1,17 @@
-import { all, setContext, put, takeEvery, delay } from 'redux-saga/effects';
+import { all, setContext, put, takeEvery } from 'redux-saga/effects';
 import SagaTester from 'redux-saga-tester';
 
 import types from '../../actionTypes';
 import { setIntl } from '../../actions';
 
 import intlProvider, { createIntlContext, getIntl } from '../intlProvider';
+import { IntlShape } from 'react-intl';
 
 const TEST_ACTION = 'TEST_ACTION';
 
-const testActionCreator = intl => ({
-    type: TEST_ACTION,
+const testActionCreator = (intl: IntlShape) => ({
     intl,
+    type: TEST_ACTION,
 });
 
 function* testGetIntl() {
@@ -26,7 +27,7 @@ describe('intProvider', () => {
             yield all([intlProvider(), testGetIntl()]);
         }
 
-        let sagaTester = new SagaTester();
+        const sagaTester = new SagaTester();
         const mockIntl = {};
 
         sagaTester.start(testerSaga);
@@ -45,7 +46,7 @@ describe('intProvider', () => {
             yield all([intlProvider(), testGetIntl()]);
         }
 
-        let sagaTester = new SagaTester();
+        const sagaTester = new SagaTester();
         const mockIntl = {};
 
         sagaTester.start(testerSaga);
