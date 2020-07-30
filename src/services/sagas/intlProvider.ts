@@ -1,21 +1,44 @@
 import { Action } from '../../types';
-import { takeEvery, setContext, getContext } from 'redux-saga/effects';
+import { takeEvery, getContext } from 'redux-saga/effects';
 import { IntlShape } from 'react-intl';
 
 import { SAGA_CONTEXT_KEY } from '../../constants';
 
 import types from '../actionTypes';
 
-function* setIntl(action: Action) {
-    const intl: IntlShape = action.payload.intl;
-    yield setContext({
-        [SAGA_CONTEXT_KEY]: intl,
-    });
+interface IntlContextValueShape {
+    intl?: IntlShape;
+}
+
+interface IntlContextShape {
+    [SAGA_CONTEXT_KEY]: IntlContextValueShape;
+}
+
+export const IntlContext: IntlContextShape = {
+    [SAGA_CONTEXT_KEY]: {},
+};
+
+export function createIntlContext(): IntlContextShape {
+    return IntlContext;
 }
 
 export function* getIntl() {
-    const intl: IntlShape | null = yield getContext(SAGA_CONTEXT_KEY) || null;
-    return intl;
+    const intlContext: IntlContextValueShape = yield getContext(SAGA_CONTEXT_KEY);
+    if (intlContext) {
+        const { intl } = intlContext;
+        return intl || null;
+    }
+    return null;
+}
+
+function* setIntl(action: Action) {
+    const intl: IntlShape = action.payload.intl;
+
+    const intlContext: IntlContextValueShape = yield getContext(SAGA_CONTEXT_KEY);
+
+    if (intlContext) {
+        intlContext.intl = intl;
+    }
 }
 
 export default function* intlProviderFlow() {
