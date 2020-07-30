@@ -97,6 +97,7 @@
         "redux": "4.x",
         "redux-mock-store": "1.5.x",
         "redux-saga": "1.x",
+        "redux-saga-tester": "^1.0.850",
         "ts-jest": "^24.0.2",
         "tslint-config-ackee": "^0.3.0",
         "tslint-config-airbnb": "^5.11.1",
