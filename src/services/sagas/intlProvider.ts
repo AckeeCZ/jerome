@@ -24,11 +24,8 @@ export function createIntlContext(): IntlContextShape {
 
 export function* getIntl() {
     const intlContext: IntlContextValueShape = yield getContext(SAGA_CONTEXT_KEY);
-    if (intlContext) {
-        const { intl } = intlContext;
-        return intl || null;
-    }
-    return null;
+
+    return intlContext?.intl ?? null;
 }
 
 function* setIntl(action: Action) {
