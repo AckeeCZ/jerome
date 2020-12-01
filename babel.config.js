@@ -14,6 +14,8 @@ module.exports = {
     plugins: [
         '@babel/proposal-class-properties',
         '@babel/proposal-object-rest-spread',
+        '@babel/plugin-proposal-optional-chaining',
+        '@babel/proposal-nullish-coalescing-operator',
         [
             'babel-plugin-custom-import-path-transform',
             {

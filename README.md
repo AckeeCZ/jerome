@@ -290,8 +290,28 @@ function configureStore(initialState) {
 }
 ```
 
+#### `createIntlContext`
+The `createIntlContext` is a helper function to create a specific context shape used by `getIntl` saga. Due to limitations of the redux-saga context, this context has to be set by a user of this library in the most top saga of the application:
+
+```
+import { setContext, all } from 'redux-saga/effects';
+import { createIntlContext } from '@ackee/jerome';
+
+function * rootSaga() {
+    yield setContext(createIntlContext());
+
+    yield all([
+        .... sagas using getIntl()
+    ])
+}
+
+sagaMiddleware.run(rootSaga);
+```
+
+Without having the context set, `getIntl` saga would return `null` even though the rest of the library is used properly.
+
 #### `getIntl(): ReactIntl`
-The `getIntl` saga returns an intl object that exactly corresponds to the [`intlShape`](https://github.com/yahoo/react-intl/wiki/API#intlshape).
+The `getIntl` saga returns an intl object that exactly corresponds to the [`intlShape`](https://github.com/yahoo/react-intl/wiki/API#intlshape). The saga relies on proper usage of [createIntlContext](#createintlcontext)
 
 _Example_
 
