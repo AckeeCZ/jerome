@@ -1,6 +1,6 @@
-import { takeEvery, all, put } from 'redux-saga/effects';
+import { takeEvery, all, put,  } from 'redux-saga/effects';
 
-import { Action } from '../../../types';
+import type { Action,  } from '../../../types';
 import { LOCALE_KEY } from '../../../constants';
 import { logger } from '../../../config';
 

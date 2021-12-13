@@ -90,6 +90,7 @@
         "less-loader": "4.1.x",
         "onchange": "5.2.x",
         "package-size": "2.3.x",
+        "prettier": "^2.5.1",
         "prettier-config-ackee": "0.x",
         "prop-types": "15.x",
         "react": "16.x",

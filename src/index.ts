@@ -6,3 +6,4 @@ export { default as reducerFactory } from './services/reducer';
 
 export * from './services/actions';
 export * from './services/selectors';
+export { LocalizationsRaw } from './components/LocalizationsRaw';
