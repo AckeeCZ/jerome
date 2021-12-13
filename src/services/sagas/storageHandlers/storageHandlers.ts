@@ -1,6 +1,6 @@
-import { takeEvery, all, put,  } from 'redux-saga/effects';
+import { takeEvery, all, put } from 'redux-saga/effects';
 
-import type { Action,  } from '../../../types';
+import type { Action } from '../../../types';
 import { LOCALE_KEY } from '../../../constants';
 import { logger } from '../../../config';
 
@@ -29,6 +29,6 @@ function* retrieveLocaleFromLocaleStorage() {
     }
 }
 
-export default function*() {
+export default function* () {
     yield all([takeEvery(types.SET_LOCALE, saveLocaleToLocalStorage), retrieveLocaleFromLocaleStorage()]);
 }

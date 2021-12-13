@@ -1,4 +1,4 @@
-import type { IntlShape } from 'react-intl'
+import type { IntlShape } from 'react-intl';
 import type { Locale } from '../types';
 import actionTypes from './actionTypes';
 
