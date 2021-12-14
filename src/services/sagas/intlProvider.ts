@@ -7,11 +7,11 @@ import { SAGA_CONTEXT_KEY } from '../../constants';
 import types from '../actionTypes';
 import * as actions from '../actions';
 
-interface IntlContextValueShape {
+export interface IntlContextValueShape {
     intl?: IntlShape;
 }
 
-interface IntlContextShape {
+export interface IntlContextShape {
     [SAGA_CONTEXT_KEY]: IntlContextValueShape;
 }
 
