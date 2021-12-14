@@ -7,12 +7,12 @@ import { useSelector } from 'react-redux';
 import { IntlEmitter } from './IntlEmitter';
 import { translateSelector } from '../../services/selectors';
 
-export interface LocalizationsRawProps extends Omit<Partial<IntlConfig>, 'messages' | 'locale'> {
+export interface TranslatableProps extends Omit<Partial<IntlConfig>, 'messages' | 'locale'> {
     intlMessages: Record<string, IntlConfig['messages']>;
     children: ReactNode | ReactNode[];
 }
 
-export const LocalizationsRaw = ({ intlMessages, children, ...rest }: LocalizationsRawProps) => {
+export const Translatable = ({ intlMessages, children, ...rest }: TranslatableProps) => {
     const { locale } = useSelector(translateSelector);
 
     return (

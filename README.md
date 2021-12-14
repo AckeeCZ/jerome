@@ -17,6 +17,7 @@
 * [Installation](#installation)
 * [Usage](#usage)
 * [API](#api)
+    * [Components](#components)
     * [HOC](#hoc)   
     * [Actions](#actions)
     * [Reducer](#reducer)
@@ -65,12 +66,40 @@ if (!Intl.RelativeTimeFormat) {
 
 ## API
 
+### Components
+#### `Translatable`
+
+- It wraps `children` with `IntlProvider` from `react-intl`. The `IntlProvider` receives current `locale` from redux store.
+- It dispatches `SET_INTL` action everytime the `locale` changes. This is required to make [`getIntl`] saga work. See [createIntlContext](#createIntlContext) for more info.
+
+> ⚠️<br/>
+> To make it work smoothly, you must have `react-intl` installed just once! So be sure your dependencies structure is flat.
+
+```tsx
+import { Translatable } from '@ackee/jerome';
+
+const messages = {
+    cs: {
+        hello: 'Dobry den',
+        ...
+    },
+    en: {
+        hello: 'Hello',
+        ...
+    },
+};
+
+export function Localizations({ children }) {
+    return <Translatable intlMessages={messages}>{children}</Translatable>
+}
+```
+
 ### HOC
 
 ![Important](./assets/alert-icon.png "Important note")
 To make HOCs works properly, you must have `react-intl` installed just once! So be sure your dependencies structure is flat.
 
-#### `translatableFactory(intlLocaleData): (ContentComponent) => TranslatableContentComponent`
+#### [Deprecated]`translatableFactory(intlLocaleData): (ContentComponent) => TranslatableContentComponent`
 
 It provides `reac-intl` localization context, so you first have to provide localization messages to the factory that will return the actual HOC.
 
@@ -310,7 +339,7 @@ sagaMiddleware.run(rootSaga);
 
 Without having the context set, `getIntl` saga would return `null` even though the rest of the library is used properly.
 
-#### `getIntl(): ReactIntl`
+#### `getIntl(): IntlShape`
 The `getIntl` saga returns an intl object that exactly corresponds to the [`intlShape`](https://github.com/yahoo/react-intl/wiki/API#intlshape). The saga relies on proper usage of [createIntlContext](#createintlcontext)
 
 _Example_

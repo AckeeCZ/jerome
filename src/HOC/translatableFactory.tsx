@@ -26,6 +26,9 @@ function shouldRecreateIntl(props: WrappedProps, state: IntlState): boolean {
     return props.locale !== state.locale;
 }
 
+/**
+ * @deprecated Use `Translatable` component.
+ */
 const translatableFactory = (intlLocaleData: LocaleData): any => {
     function prepareConfig({ locale, onError }: WrappedProps) {
         return {
