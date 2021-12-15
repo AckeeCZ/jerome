@@ -3,8 +3,8 @@ import { all } from 'redux-saga/effects';
 import intlProvider from './intlProvider';
 import storageHandlers from './storageHandlers';
 
-export { getIntl } from './intlProvider';
+export { getIntl, createIntlContext } from './intlProvider';
 
-export default function*() {
+export function* saga() {
     yield all([intlProvider(), storageHandlers()]);
 }
