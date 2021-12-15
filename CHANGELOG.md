@@ -1,5 +1,41 @@
 # Changelog
 
+<a name="5.0.0"></a>
+## 5.0.0 (2021-12-15)
+
+### Added
+
+- ✨ Add LocalizationsRaw component [[2bc2373](https://github.com/AckeeCZ/jerome/commit/2bc2373bccd522d743e6917c53517d32bc93b084)]
+- ➕ Add babel plugins for optional chaining and nullish operator [[06379f0](https://github.com/AckeeCZ/jerome/commit/06379f0a0b358d3a6f95a522e9e231f88d1337f9)]
+- ✅ Adds test for intlProvider sagas [[5cba603](https://github.com/AckeeCZ/jerome/commit/5cba603b876c37d7c15d98b4aff7545333a67b71)]
+- ➕ Adds redux-saga-tester [[91902dd](https://github.com/AckeeCZ/jerome/commit/91902ddbbfc113fe4ab63e26715155c36b99d2f6)]
+- ➕ Adds redux-saga-test [[49b3179](https://github.com/AckeeCZ/jerome/commit/49b31794790b2d7debdee956dab9ea9440ffc95e)]
+
+### Changed
+
+- ⬆️ gitmoji-changelog@2.2.1 [[b85411e](https://github.com/AckeeCZ/jerome/commit/b85411e25eea527b6be2cfb25467ae696c121fa2)]
+- 🚨 Fix linter in tests [[0132c37](https://github.com/AckeeCZ/jerome/commit/0132c37447ca9b20f7bab8e78fa37504d30055a1)]
+- ♻️ Storing intl in sagas using context [[d90f22a](https://github.com/AckeeCZ/jerome/commit/d90f22a1ab47ee95bc5720bfd902337151d494e4)]
+
+### Fixed
+
+- 🐛 Export createIntlContext [[932c106](https://github.com/AckeeCZ/jerome/commit/932c106a38eda273f6a25f955b177826b8bac729)]
+- 🐛 Intl variable was being overrided when used with multiple intl instances [[4c66b98](https://github.com/AckeeCZ/jerome/commit/4c66b98979ece4159b4b797d4f0f8fb688e0d75b)]
+
+### Miscellaneous
+
+-  Merge pull request [#32](https://github.com/AckeeCZ/jerome/issues/32) from AckeeCZ/feat/components [[e1c4381](https://github.com/AckeeCZ/jerome/commit/e1c4381f7751efc396e1698299a994646d12cccf)]
+- 📝 Add documention for Translatable component [[b07ba58](https://github.com/AckeeCZ/jerome/commit/b07ba58f73310a95d27ff9520cb9fff8a553d8b7)]
+- 🏷️ Fix return type of getIntl generator [[50512fe](https://github.com/AckeeCZ/jerome/commit/50512fe6ba44c1694072d18661780dbd1e1db3b3)]
+-  Bump marked from 0.6.3 to 0.7.0 [[31a08bc](https://github.com/AckeeCZ/jerome/commit/31a08bcc1d8fec908e4fc2f99fa85cefdaa68a47)]
+-  Merge pull request [#26](https://github.com/AckeeCZ/jerome/issues/26) from AckeeCZ/dependabot/npm_and_yarn/marked-0.7.0 [[c37233f](https://github.com/AckeeCZ/jerome/commit/c37233ffa81eb129d03c8477fee52da19378d4cf)]
+-  Bump marked from 0.6.3 to 0.7.0 [[684e036](https://github.com/AckeeCZ/jerome/commit/684e0367ad3604307295ad53e7f9c3134588f62d)]
+-  👷 Update tsconfig target to es2019 To make ts-jest working with optional chaining and nullish operator [[897e235](https://github.com/AckeeCZ/jerome/commit/897e235df95bd9d58391fb5a473d33f27ca082bf)]
+-  👷 Let babel to transpile optional chaining and nullish operator [[7a92c1d](https://github.com/AckeeCZ/jerome/commit/7a92c1d69be2a0b0848453f30611fa3bef327aab)]
+- 👌 Use optional chaining in getIntl [[d8c0f3b](https://github.com/AckeeCZ/jerome/commit/d8c0f3bf4e3a0dc63e0674a0ed23b74f371ab519)]
+- 📝 Updates sagas docs [[f97e87a](https://github.com/AckeeCZ/jerome/commit/f97e87a7b27874979894d15409506f20bdf1db1d)]
+
+
 <a name="4.1.0"></a>
 ## 4.1.0 (2020-07-14)
 
