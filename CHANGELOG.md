@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="5.0.1"></a>
+## 5.0.1 (2022-01-03)
+
+### Fixed
+
+- 🐛 getIntl: wait for SET_INTL action if intlContext doesn&#x27;t include intl object [[9742cc9](https://github.com/AckeeCZ/jerome/commit/9742cc916f8452d56e0c5c9b0646ca72439b5042)]
+
+
 <a name="5.0.0"></a>
 ## 5.0.0 (2021-12-15)
 
