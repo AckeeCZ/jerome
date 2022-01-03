@@ -1,4 +1,4 @@
-import { takeEvery, getContext } from 'redux-saga/effects';
+import { takeEvery, getContext, take, TakeEffect } from 'redux-saga/effects';
 import type { GetContextEffect } from 'redux-saga/effects';
 import type { IntlShape } from 'react-intl';
 
@@ -23,10 +23,14 @@ export function createIntlContext(): IntlContextShape {
     return IntlContext;
 }
 
-export function* getIntl(): Generator<GetContextEffect, IntlShape | null, IntlContextValueShape> {
+export function* getIntl(): Generator<GetContextEffect | TakeEffect, IntlShape, IntlContextValueShape> {
     const intlContext = yield getContext(SAGA_CONTEXT_KEY);
 
-    return intlContext?.intl ?? null;
+    if (!intlContext?.intl) {
+        yield take(types.SET_INTL);
+    }
+
+    return intlContext.intl as IntlShape;
 }
 
 function* setIntl(
