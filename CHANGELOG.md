@@ -1,11 +1,13 @@
 # Changelog
 
 
-<a name="5.0.2"></a>
-## 5.0.2 (2022-01-17)
+<a name="5.0.3"></a>
+## 5.0.3 (2022-01-17)
+
 ### Miscellaneous
 
--  Merge branch &#x27;chore/remove-marked&#x27; [[9927d3f](https://github.com/AckeeCZ/jerome/commit/9927d3f64aecbb336052b7929e8bbca023ac976a)]
+-  Merge pull request [#26](https://github.com/AckeeCZ/jerome/issues/26) from AckeeCZ/dependabot/npm_and_yarn/marked-0.7.0 [[c37233f](https://github.com/AckeeCZ/jerome/commit/c37233ffa81eb129d03c8477fee52da19378d4cf)]
+
 
 <a name="4.1.1"></a>
 ## 4.1.1 (2022-01-17)

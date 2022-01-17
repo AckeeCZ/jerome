@@ -1,6 +1,6 @@
 {
     "name": "@ackee/jerome",
-    "version": "5.0.2",
+    "version": "5.0.3",
     "description": "Equipment for localizations at React-Redux-ReduxSaga stack",
     "main": "lib/index.js",
     "module": "es/index.js",
