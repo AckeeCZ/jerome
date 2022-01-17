@@ -1,6 +1,12 @@
 # Changelog
 
 
+<a name="5.0.2"></a>
+## 5.0.2 (2022-01-17)
+### Miscellaneous
+
+-  Merge branch &#x27;chore/remove-marked&#x27; [[9927d3f](https://github.com/AckeeCZ/jerome/commit/9927d3f64aecbb336052b7929e8bbca023ac976a)]
+
 <a name="4.1.1"></a>
 ## 4.1.1 (2022-01-17)
 
