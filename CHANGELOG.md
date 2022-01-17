@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="4.1.1"></a>
+## 4.1.1 (2022-01-17)
+
+### Removed
+
+- ➖ Remove marked from dependencies [[6fb8d1e](https://github.com/AckeeCZ/jerome/commit/6fb8d1e11c4af1d0af3c19f2c08c4a9534cc9583)]
+
+
 <a name="4.1.0"></a>
 ## 4.1.0 (2020-07-14)
 
