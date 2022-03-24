@@ -3,6 +3,9 @@ name: Test Node.js Package
 on:
     pull_request:
         types: [opened, synchronize, reopened]
+    push:
+      branches:
+        - 'master'
 
 jobs:
     tests:
