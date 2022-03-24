@@ -1,6 +1,14 @@
 # Changelog
 
 
+<a name="5.1.0"></a>
+## 5.1.0 (2022-03-24)
+
+### Miscellaneous
+
+-  👷 Migrate CI build to Github Actions [[398ae82](https://github.com/AckeeCZ/jerome/commit/398ae82d681aa6c84425a534749ea07007321b59)]
+
+
 <a name="5.0.3"></a>
 ## 5.0.3 (2022-01-17)
 
