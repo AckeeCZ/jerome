@@ -15,28 +15,26 @@ const testActionCreator = (intl: IntlShape) => ({
 });
 
 function* testGetIntl() {
-    yield takeEvery(types.SET_INTL, function*() {
+    yield takeEvery(types.SET_INTL, function* () {
         const intl = yield getIntl();
         yield put(testActionCreator(intl));
     });
 }
 
 describe('intProvider', () => {
-    it('return null if the context is not set properly', async () => {
+    it('waits for SET_INTL action if the context is not set properly', async () => {
         function* testerSaga() {
             yield all([intlProvider(), testGetIntl()]);
         }
 
         const sagaTester = new SagaTester();
-        const mockIntl = {};
+        const mockIntl = {} as IntlShape;
 
         sagaTester.start(testerSaga);
 
         sagaTester.dispatch(setIntl({ intl: mockIntl }));
 
-        const testAction = await sagaTester.waitFor(TEST_ACTION);
-
-        expect(testAction.intl).toEqual(null);
+        expect(sagaTester.wasCalled(TEST_ACTION)).toBeFalsy();
     });
 
     it('correctly stores the intl to the context', async () => {
@@ -47,7 +45,7 @@ describe('intProvider', () => {
         }
 
         const sagaTester = new SagaTester();
-        const mockIntl = {};
+        const mockIntl = {} as IntlShape;
 
         sagaTester.start(testerSaga);
 
